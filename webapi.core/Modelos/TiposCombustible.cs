@@ -5,13 +5,14 @@ using System.Collections.ObjectModel;
 
 namespace webapi.core.Modelos
 {
-    public class Marcas : BaseEntity
+    public class TiposCombustible : BaseEntity
     {
-        public Marcas()
+        public TiposCombustible()        
         {
             Vehiculos = new Collection<Vehiculos>();
         }
-        public string Descripcion { get; set; }
+        
+        public string DESCRIPCION { get; set; }
         public ICollection<Vehiculos>? Vehiculos { get; set; }
     }
 }

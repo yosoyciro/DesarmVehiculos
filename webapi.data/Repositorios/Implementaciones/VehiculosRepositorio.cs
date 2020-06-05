@@ -15,6 +15,7 @@ namespace webapi.data.Repositorios.Implementaciones
             return await context.Vehiculos
                 .Include(v => v.Marcas)
                 .Include(v => v.Modelos)
+                .Include(v => v.TiposCombustible)
                 .SingleOrDefaultAsync(vehiculo => vehiculo.Patente == pPatente);
         }
 

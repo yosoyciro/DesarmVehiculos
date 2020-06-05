@@ -33,6 +33,51 @@ namespace webapi.data.Configuraciones
                 .HasForeignKey(v => v.Marcasid);
 
             builder
+                .HasOne(v => v.TiposCombustible)
+                .WithMany(t => t.Vehiculos)
+                .HasForeignKey(v => v.Tiposcombustibleid);
+
+            builder
+                .HasOne(v => v.Companias)
+                .WithMany(c => c.Vehiculos)
+                .HasForeignKey(v => v.Companiasid);
+
+            builder
+                 .HasOne(v => v.Colores)
+                .WithMany(c => c.Vehiculos)
+                .HasForeignKey(v => v.Coloresid);
+
+            builder
+                .HasOne(v => v.Categorias)
+                .WithMany(c => c.Vehiculos)
+                .HasForeignKey(v => v.Categoriasid);
+
+            builder
+                .HasOne(v => v.Depositos)
+                .WithMany(d => d.Vehiculos)
+                .HasForeignKey(v => v.Depositosid);
+
+            builder
+                .HasOne(v => v.Empleados)
+                .WithMany(e => e.Vehiculos)
+                .HasForeignKey(v => v.Empleadosid);
+
+            builder
+                .HasOne(v => v.MarcasChasis)
+                .WithMany(m => m.Vehiculos)
+                .HasForeignKey(v => v.Marcaschasisid);
+
+            builder
+                .HasOne(v => v.MarcasMotor)
+                .WithMany(c => c.Vehiculos)
+                .HasForeignKey(v => v.Marcasmotoresid);
+
+            builder
+                .HasOne(v => v.VehiculosTipo)
+                .WithMany(c => c.Vehiculos)
+                .HasForeignKey(v => v.Vehiculostipoid);
+
+            builder
                 .ToTable("Vehiculos");
         }
     }

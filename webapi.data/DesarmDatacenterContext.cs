@@ -28,13 +28,15 @@ namespace webapi.data
 
             builder
                 .ApplyConfiguration(new ModelosConfiguracion());
-            
+
+            builder
+                .ApplyConfiguration(new TiposCombustibleConfiguracion());
         }
     
 
         public virtual DbSet<Vehiculos> Vehiculos { get; set; }
-        public virtual DbSet<VehiculosTipo> VehiculosTipo { get; set; }
-        public virtual DbSet<Marcas> Marcas { get; set; }
+        //public virtual DbSet<VehiculosTipo> VehiculosTipo { get; set; }
+        //public virtual DbSet<Marcas> Marcas { get; set; }
 
         
     }

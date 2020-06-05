@@ -5,9 +5,9 @@ using System.Collections.ObjectModel;
 
 namespace webapi.core.Modelos
 {
-    public class Marcas : BaseEntity
+    public class Categorias : BaseEntity
     {
-        public Marcas()
+        public Categorias()
         {
             Vehiculos = new Collection<Vehiculos>();
         }

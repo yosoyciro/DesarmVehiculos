@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Collections.ObjectModel;
 
 namespace webapi.core.Modelos
 {
-    public partial class VehiculosTipo
+    public class VehiculosTipo : BaseEntity
     {
-        public int Vehiculostipoid { get; set; }
+        public VehiculosTipo()
+        {
+            Vehiculos = new Collection<Vehiculos>();
+        }
         public string Descripcion { get; set; }
+        public ICollection<Vehiculos>? Vehiculos { get; set; }
     }
 }
