@@ -22,6 +22,7 @@ namespace webapi.api
     public class Startup
     {
         private IConfiguration _config;
+        private string AllowAllOriginsPolicy = "AllowAllOriginsPolicy";
         public Startup(IConfiguration configuration)
         {
             _config = configuration;
@@ -31,14 +32,27 @@ namespace webapi.api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {            
             CompositionRoot.injectDependencies(services, _config);
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc().AddXmlSerializerFormatters();
 
+
+            //Sawwger
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Desarm", Version = "v1" });
+            });
+
+            //CORS
+            // Add CORS policy
+            services.AddCors(options =>
+            {
+                options.AddPolicy(AllowAllOriginsPolicy, // I introduced a string constant just as a label "AllowAllOriginsPolicy"
+                builder =>
+                {
+                    builder.AllowAnyOrigin();
+                });
             });
         }
 
@@ -53,6 +67,7 @@ namespace webapi.api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(AllowAllOriginsPolicy);
 
             app.UseAuthorization();
 

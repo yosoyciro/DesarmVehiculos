@@ -19,9 +19,40 @@ namespace webapi.root
             services.AddDbContext<DesarmDatacenterContext>(opts => opts.UseSqlServer(configuration.GetConnectionString("ConexionDesarmDatacenter")));
             services.AddScoped<DesarmDatacenterContext>();
             services.AddScoped(typeof(IRepositorio<>), typeof(Repositorio<>));
-            services.AddScoped<IVehiculosServicios, VehiculosServicio>();
-            services.AddScoped<IVehiculosRepositorio, VehiculosRepositorio>();
-            //services.AddScoped<IAuthorService, AuthorService>();
+
+            //Servicios
+            services
+                .AddScoped<ICategoriasServicio, CategoriasServicio>()
+                .AddScoped<IColoresServicio, ColoresServicio>()
+                .AddScoped<ICompaniasServicio, CompaniasServicio>()
+                .AddScoped<IDepositosServicio, DepositosServicio>()
+                .AddScoped<IEmpleadosServicio, EmpleadosServicio>()
+                .AddScoped<IMarcasServicio, MarcasServicio>()
+                .AddScoped<IMarcasChasisServicio, MarcasChasisServicio>()
+                .AddScoped<IMarcasMotorServicio, MarcasMotorServicio>()
+                .AddScoped<IModelosServicio, ModelosServicio>()
+                .AddScoped<ITiposCombustibleServicio, TiposCombustibleServicio>()
+                .AddScoped<IVehiculosServicio, VehiculosServicio>()
+                .AddScoped<IVehiculosTipoServicio, VehiculosTipoServicio>()
+                .AddScoped<IFormulario04DServicio, Formulario04DServicio>();
+
+            //Repositorios            
+            services
+                .AddScoped<ICategoriasRepositorio, CategoriasRepositorio>()
+                .AddScoped<IColoresRepositorio, ColoresRepositorio>()
+                .AddScoped<ICompaniasRepositorio, CompaniasRepositorio>()
+                .AddScoped<IDepositosRepositorio, DepositosRepositorio>()
+                .AddScoped<IEmpleadosRepositorio, EmpleadosRepositorio>()
+                .AddScoped<IMarcasRepositorio, MarcasRepositorio>()
+                .AddScoped<IMarcasChasisRepositorio, MarcasChasisRepositorio>()
+                .AddScoped<IMarcasMotorRepositorio, MarcasMotorRepositorio>()
+                .AddScoped<IModelosRepositorio, ModelosRepositorio>()
+                .AddScoped<ITiposCombustibleRepositorio, TiposCombustibleRepositorio>()
+                .AddScoped<IVehiculosRepositorio, VehiculosRepositorio>()
+                .AddScoped<IVehiculosTipoRepositorio, VehiculosTipoRepositorio>()
+                .AddScoped<IFormulario04DRepositorio, Formulario04DRepositorio>();
+            
+            //Unit of work
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }

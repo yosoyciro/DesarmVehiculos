@@ -8,6 +8,7 @@ namespace webapi.api.Recursos
     public class VehiculosRecurso
     {
         public int Id { get; set; }
+        public string Descripcion { get; set; }
         public string Patente { get; set; }
         public short Anio { get; set; }
         public short Puertas { get; set; }
@@ -24,8 +25,8 @@ namespace webapi.api.Recursos
         public int? Fechapagorecupero { get; set; }
         public int? Numerocertificadobaja { get; set; }
         public string Observaciones { get; set; }
-        public MarcaChasisRecurso MarcasChasis { get; set; }
-        public MarcasMotorRecurso MarcasMotores { get; set; }
+        public MarcasChasisRecurso MarcasChasis { get; set; }
+        public MarcasMotorRecurso MarcasMotor { get; set; }
         public string Tipocombustible { get; set; }
         public VehiculosTipoRecurso VehiculosTipo { get; set; }
         public byte? Impreso { get; set; }
@@ -42,6 +43,6 @@ namespace webapi.api.Recursos
         public TiposCombustibleRecurso TiposCombustible { get; set; }
         public int? Fechabajadnrpa { get; set; }
         public MarcasRecurso Marcas { get; set; }
-        public ModeloRecurso Modelos { get; set; }
+        public ModelosRecurso Modelos { get; set; }
     }
 }

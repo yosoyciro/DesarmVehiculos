@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace webapi.api.Recursos
 {
-    public class ModeloRecurso
+    public class ModelosRecurso
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }

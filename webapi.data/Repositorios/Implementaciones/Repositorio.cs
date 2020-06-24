@@ -4,6 +4,8 @@ using System.Text;
 using webapi.core.Modelos;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace webapi.data.Repositorios.Implementaciones
 {
@@ -17,52 +19,25 @@ namespace webapi.data.Repositorios.Implementaciones
             this.context = context;
             entities = context.Set<T>();
         }
-        public IEnumerable<T> ListarTodos()
+
+        public async Task<IEnumerable<T>> Buscar(Expression<Func<T, bool>> predicate)
         {
-            return entities.AsEnumerable();
+            return await context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public T ObtenerPorId(int id)
+        public Task<T> BuscarUno(Expression<Func<T, bool>> predicate)
         {
-            try
-            {
-                return entities
-                    .SingleOrDefault(s => s.Id == id);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-           
+            return context.Set<T>().SingleOrDefaultAsync(predicate);
         }
-        public void Agregar(T entity)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
 
-            try
-            {
-                entities.Add(entity);
-                context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            
-        }
-        public void Actualizar(T entity)
+        public async Task<IEnumerable<T>> ListarTodos()
         {
-            if (entity == null) throw new ArgumentNullException("entity");
-            context.SaveChanges();
+            return await entities.ToListAsync();
         }
-        public void Borrar(int id)
-        {
-            if (id == 0) throw new ArgumentNullException("entity");
 
-            T entity = entities.SingleOrDefault(s => s.Id == id);
-            entities.Remove(entity);
-            context.SaveChanges();
+        public ValueTask<T> ObtenerPorId(int id)
+        {
+            return context.Set<T>().FindAsync(id);
         }
     }
 }

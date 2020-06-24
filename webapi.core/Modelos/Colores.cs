@@ -12,6 +12,6 @@ namespace webapi.core.Modelos
             Vehiculos = new Collection<Vehiculos>();
         }
         public string DESCRIPCION { get; set; }
-        public ICollection<Vehiculos>? Vehiculos { get; set; }
+        public ICollection<Vehiculos> Vehiculos { get; set; }
     }
 }

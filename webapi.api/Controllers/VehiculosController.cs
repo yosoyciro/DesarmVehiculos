@@ -19,28 +19,34 @@ namespace webapi.api.Controllers
     [ApiController]
     public class VehiculosController : ControllerBase
     {
-        private IVehiculosServicios _vehiculosServicios;
+        private IVehiculosServicio _vehiculosServicios;
         private readonly IMapper _mapper;
 
-        public VehiculosController(IVehiculosServicios _vehiculosServicios, IMapper mapper)
+        public VehiculosController(IVehiculosServicio _vehiculosServicios, IMapper mapper)
         {
             this._mapper = mapper;
             this._vehiculosServicios = _vehiculosServicios;
         }
 
         [HttpGet("ListarTodos")]
-        [Produces("application/xml")]
-        //public IEnumerable<Vehiculos> GetByPatente() => _vehiculosServicios.ListarTodos();
+        public async Task<IEnumerable<Vehiculos>> ListarTodos() => await _vehiculosServicios.ListarTodos();
 
-        [HttpGet("ObtenerPorId={pVehiculosId}")]
-        //[Produces("application/xml")]
-        public async Task<Vehiculos> ObtenerPorId(int pVehiculosId) => await _vehiculosServicios.ObtenerPorId(pVehiculosId);
 
         [HttpGet("ObtenerPorPatente={pPatente}")]
-        public async Task<ActionResult<VehiculosRecurso>> ObtenerPorPatente(string pPatente)
+        public async Task<ActionResult<IEnumerable<VehiculosRecurso>>> ObtenerPorPatente(string pPatente)
         {
             var vehiculo = await _vehiculosServicios.ObtenerPorPatente(pPatente);
-            var vehiculoRecurso = _mapper.Map<Vehiculos, VehiculosRecurso>(vehiculo);
+            var vehiculoRecurso = _mapper.Map<IEnumerable<Vehiculos>, IEnumerable<VehiculosRecurso>>(vehiculo);
+
+            return Ok(vehiculoRecurso);
+
+        }
+
+        [HttpGet("ObtenerPorMarcaModelo")]
+        public async Task<ActionResult<IEnumerable<VehiculosRecurso>>> ObtenerPorMarcaModelo(int pMarcasId, int pModelosId)
+        {
+            var vehiculo = await _vehiculosServicios.ObtenerPorMarcaModelo(pMarcasId, pModelosId);
+            var vehiculoRecurso = _mapper.Map<IEnumerable<Vehiculos>, IEnumerable<VehiculosRecurso>>(vehiculo);
 
             return Ok(vehiculoRecurso);
 
@@ -50,8 +56,7 @@ namespace webapi.api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [Produces("application/xml")]
-        public IActionResult Agregar(Vehiculos pVehiculo)
+        public IActionResult Agregar(VehiculosRecurso pVehiculo)
         {
             if (!ModelState.IsValid)
             {
@@ -59,14 +64,73 @@ namespace webapi.api.Controllers
             }
             try
             {
-                _vehiculosServicios.Agregar(pVehiculo);
-                return StatusCode(200, pVehiculo);
+                var vehiculo = _mapper.Map<VehiculosRecurso, Vehiculos>(pVehiculo);
+                _vehiculosServicios.Agregar(vehiculo);
+                return StatusCode(200, vehiculo);
             }
             catch (Exception e)
             {
                 return StatusCode(500, e.InnerException.Message);
             }
             
+        }
+
+        //[HttpPost("Actualizar")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public IActionResult Actualizar(Vehiculos pVehiculo)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return StatusCode(400, ModelState); //BadRequest(ModelState);
+        //    }
+        //    try
+        //    {
+        //        var vehiculo = _mapper.Map<Vehiculos, VehiculosRecurso>(pVehiculo);
+        //        _vehiculosServicios.Actualizar(pVehiculo);
+        //        return StatusCode(200, vehiculo);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return StatusCode(500, e.InnerException.Message);
+        //    }
+
+        //}
+
+        [HttpPut("Actualizar")]
+        public async Task<ActionResult<VehiculosRecurso>> ActualizarVehiculo(int pId, [FromBody] Vehiculos pVehiculo)
+        {
+            //var validator = new SaveArtistResourceValidator();
+            //var validationResult = await validator.ValidateAsync(saveArtistResource);
+
+            //if (!validationResult.IsValid)
+            //    return BadRequest(validationResult.Errors); // this needs refining, but for demo it is ok
+
+            var vehiculoActualizar = await _vehiculosServicios.ObtenerPorIdConDatos(pId);
+
+            if (vehiculoActualizar == null)
+            {
+                return NotFound();
+            }
+
+            await _vehiculosServicios.Actualizar(vehiculoActualizar, pVehiculo);
+
+            var vehiculoActualizado = await _vehiculosServicios.ObtenerPorIdConDatos(pId);
+
+            var vehiculoActualizadoRecurso = _mapper.Map<Vehiculos, VehiculosRecurso>(vehiculoActualizado);
+
+            return Ok(vehiculoActualizadoRecurso);
+        }
+
+        [HttpGet("BuscarVehiculos")]
+        public async Task<ActionResult<IEnumerable<VehiculosRecurso>>> Buscar(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados)
+        {
+            var vehiculo = await _vehiculosServicios.BuscarVehiculo(pPatente, pMarcasId, pModelosId, pMostrarCompactados);
+            var vehiculoRecurso = _mapper.Map<IEnumerable<Vehiculos>, IEnumerable<VehiculosRecurso>>(vehiculo);
+
+            return Ok(vehiculoRecurso);
+
         }
     }
 }

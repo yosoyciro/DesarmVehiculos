@@ -15,7 +15,7 @@ namespace webapi.api.Mapeos
              // Domain to Resource
             CreateMap<Vehiculos, VehiculosRecurso>();
             CreateMap<Marcas, MarcasRecurso>();
-            CreateMap<Modelos, ModeloRecurso>();
+            CreateMap<Modelos, ModelosRecurso>();
             CreateMap<TiposCombustible, TiposCombustibleRecurso>();
             CreateMap<VehiculosTipo, VehiculosTipoRecurso>();
             CreateMap<Categorias, CategoriasRecurso>();
@@ -24,12 +24,13 @@ namespace webapi.api.Mapeos
             CreateMap<Depositos, DepositosRecurso>();
             CreateMap<Empleados, EmpleadosRecurso>();
             CreateMap<MarcasChasis, MarcasChasisRecurso>();
-            CreateMap<MarcasMotor, MarcasMotorRecurso>();            
-
+            CreateMap<MarcasMotor, MarcasMotorRecurso>();
+            CreateMap<Formulario04D, Formulario04DRecurso>();
+            
             // Resource to Domain
             CreateMap<VehiculosRecurso, Vehiculos>();
             CreateMap<MarcasRecurso, Marcas>();
-            CreateMap<ModeloRecurso, Modelos>();
+            CreateMap<ModelosRecurso, Modelos>();
             CreateMap<TiposCombustibleRecurso, TiposCombustible>();
             CreateMap<VehiculosTipoRecurso, VehiculosTipo>();
             CreateMap<CategoriasRecurso, Categorias>();
@@ -39,6 +40,7 @@ namespace webapi.api.Mapeos
             CreateMap<EmpleadosRecurso, Empleados>();
             CreateMap<MarcasChasisRecurso, MarcasChasis>();
             CreateMap<MarcasMotorRecurso, MarcasMotor>();
+            CreateMap<Formulario04DRecurso, Formulario04D>();
         }
     }
 }

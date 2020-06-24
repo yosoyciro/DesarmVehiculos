@@ -18,13 +18,13 @@ namespace webapi.core.Modelos
         public string Chasis { get; set; }
         public string Motor { get; set; }
         public string Propietario { get; set; }
-        public int? Coloresid { get; set; }
+        public int Coloresid { get; set; }
         public Colores Colores { get; set; }
         public int? Formulario04did { get; set; }
         public int? Fechapedido04d { get; set; }
         public int? Fechaingresounidad { get; set; }
         public int? Fechadespiece { get; set; }
-        public int? Companiasid { get; set; }
+        public int Companiasid { get; set; }
         public Companias Companias { get; set; }
         public double? Costorecupero { get; set; }
         public int? Fechapagorecupero { get; set; }
@@ -41,7 +41,7 @@ namespace webapi.core.Modelos
         public int? Librosid { get; set; }
         public int? Depositosid { get; set; }
         public Depositos Depositos { get; set; }
-        public string Nrosiniestro { get; set; }
+        public string? Nrosiniestro { get; set; }
         public int? Empleadosid { get; set; }
         public Empleados Empleados { get; set; }
         public byte? Paracompactar { get; set; }

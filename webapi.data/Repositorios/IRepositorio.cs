@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using webapi.core.Modelos;
+using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace webapi.data.Repositorios
 {
     public interface IRepositorio<T> where T : BaseEntity
     {
-        IEnumerable<T> ListarTodos();
-        T ObtenerPorId(int id);
-        void Agregar(T entity);
-        void Actualizar(T entity);
-        void Borrar(int id);
+        Task<IEnumerable<T>> ListarTodos();
+        Task<IEnumerable<T>> Buscar(Expression<Func<T, bool>> predicate);
+        ValueTask<T> ObtenerPorId(int id);
+        Task<T> BuscarUno(Expression<Func<T, bool>> predicate);
+        //T ObtenerPorId(int id);
+        //Task AgregarAsync(T entity);
+        //Task ActualizarAsync(T entity);
+        //void Borrar(int id);
     }
 }

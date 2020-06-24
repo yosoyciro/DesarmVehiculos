@@ -21,6 +21,7 @@ namespace webapi.data.Configuraciones
             builder
                 .Property(v => v.Id).HasColumnName("VehiculosId");
 
+
             //Relaciones
             builder
                 .HasOne(v => v.Modelos)
