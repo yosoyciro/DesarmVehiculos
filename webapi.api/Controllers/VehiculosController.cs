@@ -12,6 +12,7 @@ using webapi.data.Repositorios;
 using webapi.business.Servicios;
 using AutoMapper;
 using webapi.api.Recursos;
+using webapi.api.Validadores;
 
 namespace webapi.api.Controllers
 {
@@ -51,62 +52,19 @@ namespace webapi.api.Controllers
             return Ok(vehiculoRecurso);
 
         }
-
-        [HttpPost("Agregar")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Agregar(VehiculosRecurso pVehiculo)
-        {
-            if (!ModelState.IsValid)
-            {
-                return StatusCode(400, ModelState); //BadRequest(ModelState);
-            }
-            try
-            {
-                var vehiculo = _mapper.Map<VehiculosRecurso, Vehiculos>(pVehiculo);
-                _vehiculosServicios.Agregar(vehiculo);
-                return StatusCode(200, vehiculo);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500, e.InnerException.Message);
-            }
-            
-        }
-
-        //[HttpPost("Actualizar")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //public IActionResult Actualizar(Vehiculos pVehiculo)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return StatusCode(400, ModelState); //BadRequest(ModelState);
-        //    }
-        //    try
-        //    {
-        //        var vehiculo = _mapper.Map<Vehiculos, VehiculosRecurso>(pVehiculo);
-        //        _vehiculosServicios.Actualizar(pVehiculo);
-        //        return StatusCode(200, vehiculo);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return StatusCode(500, e.InnerException.Message);
-        //    }
-
-        //}
+       
 
         [HttpPut("Actualizar")]
-        public async Task<ActionResult<VehiculosRecurso>> ActualizarVehiculo(int pId, [FromBody] Vehiculos pVehiculo)
+        public async Task<ActionResult<VehiculosRecurso>> ActualizarVehiculo(int pId, [FromBody] VehiculoGuardarRecurso pVehiculo)
         {
-            //var validator = new SaveArtistResourceValidator();
-            //var validationResult = await validator.ValidateAsync(saveArtistResource);
+            //Validaciones
+            var validator = new VehiculoGuardarRecursoValidador();
+            var validador = await validator.ValidateAsync(pVehiculo);
 
-            //if (!validationResult.IsValid)
-            //    return BadRequest(validationResult.Errors); // this needs refining, but for demo it is ok
+            if (!validador.IsValid)
+                return BadRequest(validador.Errors);
 
+            //Guardo
             var vehiculoActualizar = await _vehiculosServicios.ObtenerPorIdConDatos(pId);
 
             if (vehiculoActualizar == null)
@@ -114,13 +72,34 @@ namespace webapi.api.Controllers
                 return NotFound();
             }
 
-            await _vehiculosServicios.Actualizar(vehiculoActualizar, pVehiculo);
+            var vehiculo = _mapper.Map<VehiculoGuardarRecurso, Vehiculos>(pVehiculo);
+            await _vehiculosServicios.Actualizar(vehiculoActualizar, vehiculo);
 
             var vehiculoActualizado = await _vehiculosServicios.ObtenerPorIdConDatos(pId);
 
             var vehiculoActualizadoRecurso = _mapper.Map<Vehiculos, VehiculosRecurso>(vehiculoActualizado);
 
             return Ok(vehiculoActualizadoRecurso);
+        }
+
+        [HttpPost("Agregar")]
+        public async Task<ActionResult<VehiculosRecurso>> AgregarVehiculo([FromBody] VehiculoGuardarRecurso pVehiculo)
+        {
+            //Validaciones
+            var validator = new VehiculoGuardarRecursoValidador();
+            var validador = await validator.ValidateAsync(pVehiculo);
+
+            if (!validador.IsValid)
+                return BadRequest(validador.Errors);
+
+            //Guardo
+            var vehiculoCrear = _mapper.Map<VehiculoGuardarRecurso, Vehiculos>(pVehiculo);
+
+            var vehiculoNuevo = await _vehiculosServicios.AgregarAsync(vehiculoCrear);
+            var vehiculo = await _vehiculosServicios.ObtenerPorIdConDatos(vehiculoNuevo.Id);
+            var vehiculoRecurso = _mapper.Map<Vehiculos, VehiculosRecurso>(vehiculo);   
+
+            return Ok(vehiculoRecurso);
         }
 
         [HttpGet("BuscarVehiculos")]

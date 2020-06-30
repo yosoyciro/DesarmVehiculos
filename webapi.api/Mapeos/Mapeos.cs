@@ -41,6 +41,9 @@ namespace webapi.api.Mapeos
             CreateMap<MarcasChasisRecurso, MarcasChasis>();
             CreateMap<MarcasMotorRecurso, MarcasMotor>();
             CreateMap<Formulario04DRecurso, Formulario04D>();
+
+            //Save resources
+            CreateMap<VehiculoGuardarRecurso, Vehiculos>();
         }
     }
 }

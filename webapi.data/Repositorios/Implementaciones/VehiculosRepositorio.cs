@@ -101,17 +101,11 @@ namespace webapi.data.Repositorios.Implementaciones
                 .ToListAsync();
         }
 
-        //public async Task<Vehiculos> Actualizar(Vehiculos pVehiculo)
-        //{
-        //    try
-        //    {
-        //        return await context.Vehiculos.Update(pVehiculo);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+        public async Task<Vehiculos> AgregarAsync(Vehiculos pVehiculo)
+        {
+            await context.Set<Vehiculos>().AddAsync(pVehiculo);
+            return pVehiculo;
+        }
 
         private DesarmDatacenterContext DesarmDatacenterContext
         {

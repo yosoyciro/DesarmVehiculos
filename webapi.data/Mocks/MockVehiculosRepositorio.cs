@@ -106,5 +106,15 @@ namespace webapi.data.Mocks
         {
             throw new NotImplementedException();
         }
+
+        public Task AgregarAsync(Vehiculos pVehiculo)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Vehiculos> IVehiculosRepositorio.AgregarAsync(Vehiculos pVehiculo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
