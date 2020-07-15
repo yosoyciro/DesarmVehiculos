@@ -44,5 +44,7 @@ namespace webapi.api.Recursos
         public int? Fechabajadnrpa { get; set; }
         public int MarcasId { get; set; }
         public int ModelosId { get; set; }
+        public string Usuario { get; set; }
+        public DateTime FechaActualizacion { get; set;}
     }
 }

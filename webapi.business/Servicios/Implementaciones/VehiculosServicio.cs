@@ -85,6 +85,8 @@ namespace webapi.business.Servicios.Implementaciones
                 pVehiculoActualizar.Facturarecupero = pVehiculo.Facturarecupero;
                 pVehiculoActualizar.Numerocertificadobaja = pVehiculo.Numerocertificadobaja;                
                 pVehiculoActualizar.Empleadosid = pVehiculo.Empleadosid;
+                pVehiculoActualizar.Usuario = pVehiculo.Usuario;
+                pVehiculoActualizar.FechaActualizacion = pVehiculo.FechaActualizacion;
                 
                 await _unitOfWork.CommitAsync();
             }
@@ -129,10 +131,10 @@ namespace webapi.business.Servicios.Implementaciones
             switch (pMostrarCompactados)
             {
                 case true:
-                    return x => x.Patente == pPatente;
+                    return x => x.Patente.Contains(pPatente);
 
                 case false:
-                    return x => x.Patente == pPatente && x.Vehiculoscompactadosid == 0;
+                    return x => x.Patente.Contains(pPatente) && x.Vehiculoscompactadosid == 0;
             }
 
         }

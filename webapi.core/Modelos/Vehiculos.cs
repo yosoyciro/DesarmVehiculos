@@ -54,5 +54,7 @@ namespace webapi.core.Modelos
         public int Tiposcombustibleid { get; set; }
         public TiposCombustible TiposCombustible { get; set; }
         public int? Fechabajadnrpa { get; set; }
+        public string Usuario { get; set; }
+        public DateTime FechaActualizacion { get; set; }
     }
 }

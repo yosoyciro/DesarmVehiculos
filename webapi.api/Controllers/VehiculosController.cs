@@ -93,13 +93,21 @@ namespace webapi.api.Controllers
                 return BadRequest(validador.Errors);
 
             //Guardo
-            var vehiculoCrear = _mapper.Map<VehiculoGuardarRecurso, Vehiculos>(pVehiculo);
+            try
+            {
+                var vehiculoCrear = _mapper.Map<VehiculoGuardarRecurso, Vehiculos>(pVehiculo);
 
-            var vehiculoNuevo = await _vehiculosServicios.AgregarAsync(vehiculoCrear);
-            var vehiculo = await _vehiculosServicios.ObtenerPorIdConDatos(vehiculoNuevo.Id);
-            var vehiculoRecurso = _mapper.Map<Vehiculos, VehiculosRecurso>(vehiculo);   
+                var vehiculoNuevo = await _vehiculosServicios.AgregarAsync(vehiculoCrear);
+                var vehiculo = await _vehiculosServicios.ObtenerPorIdConDatos(vehiculoNuevo.Id);
+                var vehiculoRecurso = _mapper.Map<Vehiculos, VehiculosRecurso>(vehiculo);
 
-            return Ok(vehiculoRecurso);
+                return Ok(vehiculoRecurso);
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.InnerException.Message);                
+            }
+            
         }
 
         [HttpGet("BuscarVehiculos")]
