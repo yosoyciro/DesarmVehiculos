@@ -46,5 +46,6 @@ namespace webapi.api.Recursos
         public ModelosRecurso Modelos { get; set; }
         public string Usuario { get; set; }
         public DateTime FechaActualizacion { get; set; }
+        public int DepositosIslasUbicacionesId { get; set; }
     }
 }

@@ -21,6 +21,8 @@ namespace webapi.data.Repositorios.Implementaciones
         private VehiculosRepositorio _vehiculosRepositorio;
         private VehiculosTipoRepositorio _vehiculosTipoRepositorio;
         private Formulario04DRepositorio _formulario04DRepositorio;
+        private DepositosIslasUbicacionesRepositorio _depositosIslasUbicacionesRepositorio;
+        private DepositosIslasMapaRepositorio _depositosIslasMapaRepositorio;
 
         public UnitOfWork(DesarmDatacenterContext databaseContext)
         { _databaseContext = databaseContext; }
@@ -49,6 +51,8 @@ namespace webapi.data.Repositorios.Implementaciones
 
         public IVehiculosTipoRepositorio VehiculosTipoRepositorio => _vehiculosTipoRepositorio ?? new VehiculosTipoRepositorio(_databaseContext);
         public IFormulario04DRepositorio Formulario04DRepositorio => _formulario04DRepositorio ?? new Formulario04DRepositorio(_databaseContext);
+        public IDepositosIslasUbcacionesRepositorio DepositosIslasUbcacionesRepositorio => _depositosIslasUbicacionesRepositorio ?? new DepositosIslasUbicacionesRepositorio(_databaseContext);
+        public IDepositosIslasMapaRepositorio DepositosIslasMapaRepositorio => _depositosIslasMapaRepositorio ?? new DepositosIslasMapaRepositorio(_databaseContext);
 
         public async Task<int> CommitAsync()
         {

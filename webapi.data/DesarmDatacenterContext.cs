@@ -33,7 +33,9 @@ namespace webapi.data
                 .ApplyConfiguration(new MarcasChasisConfiguracion())
                 .ApplyConfiguration(new MarcasMotorConfiguracion())
                 .ApplyConfiguration(new VehiculosTipoConfiguracion())
-                .ApplyConfiguration(new Formulario04DConfiguracion());
+                .ApplyConfiguration(new Formulario04DConfiguracion())
+                .ApplyConfiguration(new DepositosIslasMapaConfiguracion())
+                .ApplyConfiguration(new DepositosIslasUbicacionesConfiguracion());
         }
 
         public virtual DbSet<Categorias> Categorias { get; set; }
@@ -49,6 +51,8 @@ namespace webapi.data
         public virtual DbSet<Vehiculos> Vehiculos { get; set; }
         public virtual DbSet<VehiculosTipo> VehiculosTipo { get; set; }
         public virtual DbSet<Formulario04D> Formulario04D { get; set; }
+        public virtual DbSet<DepositosIslasMapa> DepositosIslasMapa { get; set; }
+        public virtual DbSet<DepositosIslasUbicaciones> DepositosIslasUbicaciones { get; set; }
 
     }
 }

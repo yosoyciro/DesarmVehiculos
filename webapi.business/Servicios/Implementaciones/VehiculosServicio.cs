@@ -87,6 +87,7 @@ namespace webapi.business.Servicios.Implementaciones
                 pVehiculoActualizar.Empleadosid = pVehiculo.Empleadosid;
                 pVehiculoActualizar.Usuario = pVehiculo.Usuario;
                 pVehiculoActualizar.FechaActualizacion = pVehiculo.FechaActualizacion;
+                pVehiculoActualizar.DepositosIslasUbicacionesId = pVehiculo.DepositosIslasUbicacionesId;
                 
                 await _unitOfWork.CommitAsync();
             }
@@ -152,6 +153,20 @@ namespace webapi.business.Servicios.Implementaciones
 
         }
 
+        public async Task ActualizarDepositosIslasUbicaciones(Vehiculos pVehiculoActualizar, int pDepositosIslasUbicacionesId)
+        {
+            try
+            {
+                pVehiculoActualizar.DepositosIslasUbicacionesId = pDepositosIslasUbicacionesId;
+
+                await _unitOfWork.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         //Expression<Func<Vehiculos, bool>> BuscarPorMarcaModelo(int pMarcasId, int pModelosId, bool pMostrarCompactados)
         //{
         //    switch (pMostrarCompactados)
@@ -188,6 +203,6 @@ namespace webapi.business.Servicios.Implementaciones
         //    }
 
         //    return Expression.Lambda<Func<IQueryable<T>, object>>(body, parameter);
-        
+
     }
 }

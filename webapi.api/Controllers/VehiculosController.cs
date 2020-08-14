@@ -82,6 +82,26 @@ namespace webapi.api.Controllers
             return Ok(vehiculoActualizadoRecurso);
         }
 
+        [HttpPut("ActualizarDepositosIslasUbicaciones")]
+        public async Task<ActionResult<VehiculosRecurso>> ActualizarDepositosIslasUbicaciones(int pId, int pDepositosIslasUbicacionesId)
+        {            
+            //Guardo
+            var vehiculoActualizar = await _vehiculosServicios.ObtenerPorIdConDatos(pId);
+
+            if (vehiculoActualizar == null)
+            {
+                return NotFound();
+            }
+
+            await _vehiculosServicios.ActualizarDepositosIslasUbicaciones(vehiculoActualizar, pDepositosIslasUbicacionesId);
+
+            var vehiculoActualizado = await _vehiculosServicios.ObtenerPorIdConDatos(pId);
+
+            var vehiculoActualizadoRecurso = _mapper.Map<Vehiculos, VehiculosRecurso>(vehiculoActualizado);
+
+            return Ok(vehiculoActualizadoRecurso);
+        }
+
         [HttpPost("Agregar")]
         public async Task<ActionResult<VehiculosRecurso>> AgregarVehiculo([FromBody] VehiculoGuardarRecurso pVehiculo)
         {

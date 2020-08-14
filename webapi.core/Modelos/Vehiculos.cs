@@ -56,5 +56,6 @@ namespace webapi.core.Modelos
         public int? Fechabajadnrpa { get; set; }
         public string Usuario { get; set; }
         public DateTime FechaActualizacion { get; set; }
+        public int? DepositosIslasUbicacionesId { get; set; }
     }
 }
