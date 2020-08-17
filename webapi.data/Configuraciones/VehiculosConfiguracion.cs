@@ -79,6 +79,11 @@ namespace webapi.data.Configuraciones
                 .HasForeignKey(v => v.Vehiculostipoid);
 
             builder
+                .HasOne(v => v.DepositosIslasUbicaciones)
+                .WithMany(d => d.Vehiculos)
+                .HasForeignKey(v => v.DepositosIslasUbicacionesId);
+
+            builder
                 .ToTable("Vehiculos");
         }
     }

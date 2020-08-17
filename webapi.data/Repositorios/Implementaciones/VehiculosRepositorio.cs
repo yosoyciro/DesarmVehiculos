@@ -26,6 +26,7 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Include(v => v.MarcasChasis)
                 .Include(v => v.MarcasMotor)
                 .Include(v => v.VehiculosTipo)
+                .Include(v => v.DepositosIslasUbicaciones)
                 .Where(vehiculo => vehiculo.Patente == pPatente && vehiculo.Vehiculoscompactadosid == 0)
                 .ToListAsync();
         }
@@ -43,7 +44,8 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Include(v => v.Empleados)
                 .Include(v => v.MarcasChasis)
                 .Include(v => v.MarcasMotor)
-                .Include(v => v.VehiculosTipo)                
+                .Include(v => v.VehiculosTipo)
+                .Include(v => v.DepositosIslasUbicaciones)
                 .SingleOrDefaultAsync(v => v.Id == pId);
         }
 
@@ -60,7 +62,8 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Include(v => v.Empleados)
                 .Include(v => v.MarcasChasis)
                 .Include(v => v.MarcasMotor)
-                .Include(v => v.VehiculosTipo)    
+                .Include(v => v.VehiculosTipo)
+                .Include(v => v.DepositosIslasUbicaciones)
                 .Where(vehiculo => vehiculo.Marcasid == pMarcasId && vehiculo.Vehiculoscompactadosid == 0)
                 .ToListAsync();
         }
@@ -79,6 +82,7 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Include(v => v.MarcasChasis)
                 .Include(v => v.MarcasMotor)
                 .Include(v => v.VehiculosTipo)
+                .Include(v => v.DepositosIslasUbicaciones)
                 .Where(vehiculo => vehiculo.Marcasid == pMarcasId && vehiculo.Modelosid == pModelosId && vehiculo.Vehiculoscompactadosid == 0)
                 .ToListAsync();
         }
@@ -97,6 +101,7 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Include(v => v.MarcasChasis)
                 .Include(v => v.MarcasMotor)
                 .Include(v => v.VehiculosTipo)
+                .Include(v => v.DepositosIslasUbicaciones)
                 .Where(predicate)
                 .ToListAsync();
         }

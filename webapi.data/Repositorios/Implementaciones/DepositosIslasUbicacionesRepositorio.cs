@@ -29,7 +29,7 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Select(v => v.DepositosIslasUbicacionesId);
 
             return await context.DepositosIslasUbicaciones
-                .Where(u => !ubicacionesAsignadas.Contains(u.Id))
+                .Where(u => !ubicacionesAsignadas.Contains(u.Id) && u.Id != 0)
                 .OrderBy(x => x.PRIORIDAD)
                 .ToListAsync();
         }
@@ -44,7 +44,7 @@ namespace webapi.data.Repositorios.Implementaciones
                     .Select(v => v.DepositosIslasUbicacionesId);
 
                 return await context.DepositosIslasUbicaciones
-                    .Where(u => !ubicacionesAsignadas.Contains(u.Id))
+                    .Where(u => !ubicacionesAsignadas.Contains(u.Id) && u.Id != 0)
                     .OrderBy(x => x.PRIORIDAD)
                     .Take(1)
                     .SingleAsync();
