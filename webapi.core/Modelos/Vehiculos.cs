@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,6 +8,10 @@ namespace webapi.core.Modelos
 {
     public class Vehiculos : BaseEntity
     {
+        public Vehiculos()
+        {
+            ArticulosStock = new Collection<ArticulosStock>();
+        }
         public string Descripcion { get; set; }
         public int Marcasid { get; set; }
         public Marcas Marcas { get; set; }
@@ -58,5 +63,6 @@ namespace webapi.core.Modelos
         public DateTime FechaActualizacion { get; set; }
         public int? DepositosIslasUbicacionesId { get; set; }
         public DepositosIslasUbicaciones DepositosIslasUbicaciones { get; set; }
+        public ICollection<ArticulosStock> ArticulosStock { get; set; }
     }
 }

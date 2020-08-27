@@ -116,5 +116,10 @@ namespace webapi.data.Mocks
         {
             throw new NotImplementedException();
         }
+
+        public Task<Vehiculos> ObtenerPorPatenteConArticulosStock(string pPatente)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

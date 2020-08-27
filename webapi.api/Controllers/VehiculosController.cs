@@ -43,6 +43,16 @@ namespace webapi.api.Controllers
 
         }
 
+        [HttpGet("ObtenerPorPatenteConArticulosStock={pPatente}")]
+        public async Task<ActionResult<VehiculosRecurso>> ObtenerPorPatenteConArticulosStock(string pPatente)
+        {
+            var vehiculo = await _vehiculosServicios.ObtenerPorPatenteConArticulosStock(pPatente);
+            var vehiculoRecurso = _mapper.Map<Vehiculos, VehiculosRecurso>(vehiculo);
+
+            return Ok(vehiculoRecurso);
+
+        }
+
         [HttpGet("ObtenerPorMarcaModelo")]
         public async Task<ActionResult<IEnumerable<VehiculosRecurso>>> ObtenerPorMarcaModelo(int pMarcasId, int pModelosId)
         {

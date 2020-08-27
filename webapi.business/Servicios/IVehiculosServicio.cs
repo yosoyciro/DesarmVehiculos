@@ -12,6 +12,7 @@ namespace webapi.business.Servicios
         Task<Vehiculos> ObtenerPorId(int pId);
         Task<Vehiculos> ObtenerPorIdConDatos(int pId);
         Task<IEnumerable<Vehiculos>> ObtenerPorPatente(string pPatente);
+        Task<Vehiculos> ObtenerPorPatenteConArticulosStock(string pPatente);
         Task Actualizar(Vehiculos pVehiculoActualizar, Vehiculos pVehiculo);
         Task<IEnumerable<Vehiculos>> ObtenerPorMarca(int pMarcasId);
         Task<IEnumerable<Vehiculos>> ObtenerPorMarcaModelo(int pMarcasId, int pModelosId);

@@ -28,6 +28,7 @@ namespace webapi.api.Mapeos
             CreateMap<Formulario04D, Formulario04DRecurso>();
             CreateMap<DepositosIslasUbicaciones, DepositosIslasUbicacionesRecurso>();
             CreateMap<DepositosIslasMapa, DepositosIslasMapaRecursos>();
+            CreateMap<ArticulosStock, ArticulosStockRecurso>();
             
             // Resource to Domain
             CreateMap<VehiculosRecurso, Vehiculos>();
@@ -45,6 +46,7 @@ namespace webapi.api.Mapeos
             CreateMap<Formulario04DRecurso, Formulario04D>();
             CreateMap<DepositosIslasUbicacionesRecurso, DepositosIslasUbicaciones>();
             CreateMap<DepositosIslasMapaRecursos, DepositosIslasMapa>();
+            CreateMap<ArticulosStockRecurso, ArticulosStock>();
 
             //Save resources
             CreateMap<VehiculoGuardarRecurso, Vehiculos>();

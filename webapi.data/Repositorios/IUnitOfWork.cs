@@ -22,6 +22,7 @@ namespace webapi.data.Repositorios
         IFormulario04DRepositorio Formulario04DRepositorio { get; }
         IDepositosIslasUbcacionesRepositorio DepositosIslasUbcacionesRepositorio { get; }
         IDepositosIslasMapaRepositorio DepositosIslasMapaRepositorio { get; }
+        IArticulosStockRepositorio ArticulosStockRepositorio { get; }
         Task<int> CommitAsync();
     }
 }

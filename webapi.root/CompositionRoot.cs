@@ -35,7 +35,8 @@ namespace webapi.root
                 .AddScoped<IVehiculosServicio, VehiculosServicio>()
                 .AddScoped<IVehiculosTipoServicio, VehiculosTipoServicio>()
                 .AddScoped<IFormulario04DServicio, Formulario04DServicio>()
-                .AddScoped<IDepositosIslasUbicacionesServicio, DepositosIslasUbicacionesServicio>();
+                .AddScoped<IDepositosIslasUbicacionesServicio, DepositosIslasUbicacionesServicio>()
+                .AddScoped<IArticulosStockServicio, ArticulosStockServicio>();
 
             //Repositorios            
             services
@@ -53,7 +54,8 @@ namespace webapi.root
                 .AddScoped<IVehiculosTipoRepositorio, VehiculosTipoRepositorio>()
                 .AddScoped<IFormulario04DRepositorio, Formulario04DRepositorio>()
                 .AddScoped<IDepositosIslasUbcacionesRepositorio, DepositosIslasUbicacionesRepositorio>()
-                .AddScoped<IDepositosIslasMapaRepositorio, DepositosIslasMapaRepositorio>();
+                .AddScoped<IDepositosIslasMapaRepositorio, DepositosIslasMapaRepositorio>()
+                .AddScoped<IArticulosStockRepositorio, ArticulosStockRepositorio>();
             
             //Unit of work
             services.AddScoped<IUnitOfWork, UnitOfWork>();

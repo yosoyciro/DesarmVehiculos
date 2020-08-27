@@ -27,6 +27,12 @@ namespace webapi.business.Servicios.Implementaciones
                 .ObtenerPorPatente(pPatente);
         }
 
+        public async Task<Vehiculos> ObtenerPorPatenteConArticulosStock(string pPatente)
+        {
+            return await _unitOfWork.VehiculosRepositorio
+                .ObtenerPorPatenteConArticulosStock(pPatente);
+        }
+
         public async Task<Vehiculos> ObtenerPorId(int pId)
         {
             return await _unitOfWork.VehiculosRepositorio.ObtenerPorId(pId);

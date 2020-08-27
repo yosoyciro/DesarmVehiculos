@@ -47,5 +47,6 @@ namespace webapi.api.Recursos
         public string Usuario { get; set; }
         public DateTime FechaActualizacion { get; set; }
         public DepositosIslasUbicacionesRecurso DepositosIslasUbicaciones { get; set; }
+        //public ICollection<ArticulosStockRecurso> ArticulosStock { get; set; }
     }
 }

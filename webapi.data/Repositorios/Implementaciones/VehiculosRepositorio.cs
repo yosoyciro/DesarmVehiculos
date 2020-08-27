@@ -112,6 +112,13 @@ namespace webapi.data.Repositorios.Implementaciones
             return pVehiculo;
         }
 
+        public async Task<Vehiculos> ObtenerPorPatenteConArticulosStock(string pPatente)
+        {
+            return await context.Vehiculos
+                .Include(v => v.ArticulosStock)
+                .SingleOrDefaultAsync(v => v.Patente == pPatente);
+        }
+
         private DesarmDatacenterContext DesarmDatacenterContext
         {
             get { return context as DesarmDatacenterContext; }
