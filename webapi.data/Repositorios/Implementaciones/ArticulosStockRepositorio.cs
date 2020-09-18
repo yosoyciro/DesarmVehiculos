@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using webapi.core.Modelos;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+
 namespace webapi.data.Repositorios.Implementaciones
 {
     public class ArticulosStockRepositorio : Repositorio<ArticulosStock>, IArticulosStockRepositorio
