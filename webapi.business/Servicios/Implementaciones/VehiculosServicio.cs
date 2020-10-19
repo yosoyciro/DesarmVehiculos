@@ -121,18 +121,22 @@ namespace webapi.business.Servicios.Implementaciones
             
         }
 
-        public async Task<IEnumerable<Vehiculos>> BuscarVehiculo(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados)
+        public async Task<IEnumerable<Vehiculos>> BuscarVehiculo(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis)
         {
             if (pPatente != null)
                 return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorPatente(pPatente, pMostrarCompactados));
 
-            else if (pMarcasId != 0 && pModelosId != 0)
+            if (pMarcasId != 0)
                 return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorMarcaModelo(pMarcasId, pModelosId, pMostrarCompactados));
+
+            if (pNroChasis != "")
+                return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorChasis(pNroChasis, pMostrarCompactados));
 
             else
                 return null;
         }
 
+        #region expresiones
         Expression<Func<Vehiculos, bool>> BuscarPorPatente(string pPatente, bool pMostrarCompactados)
         {
             switch (pMostrarCompactados)
@@ -151,13 +155,34 @@ namespace webapi.business.Servicios.Implementaciones
             switch (pMostrarCompactados)
             {
                 case true:
-                    return x => x.Marcasid == pMarcasId && x.Modelosid == pModelosId;
+                    if (pModelosId != 0)
+                        return x => x.Marcasid == pMarcasId && x.Modelosid == pModelosId;
+                    else
+                        return x => x.Marcasid == pMarcasId;
 
                 case false:
-                    return x => ((x.Marcasid == pMarcasId && x.Modelosid == pModelosId) && x.Vehiculoscompactadosid == 0);
+                    if (pModelosId != 0)
+                        return x => (x.Marcasid == pMarcasId && x.Modelosid == pModelosId && x.Vehiculoscompactadosid == 0);
+                    else
+                        return x => (x.Marcasid == pMarcasId && x.Vehiculoscompactadosid == 0);
             }
 
         }
+
+        Expression<Func<Vehiculos, bool>> BuscarPorChasis(string pNroChasis, bool pMostrarCompactados)
+        {
+            switch (pMostrarCompactados)
+            {
+                case true:
+                    //return x => x.Chasis.Contains(pNroChasis);
+                    return x => x.Chasis.EndsWith(pNroChasis);
+
+                case false:
+                    return x => x.Chasis.EndsWith(pNroChasis) && x.Vehiculoscompactadosid == 0;
+            }
+
+        }
+        #endregion
 
         public async Task ActualizarDepositosIslasUbicaciones(Vehiculos pVehiculoActualizar, int pDepositosIslasUbicacionesId)
         {
