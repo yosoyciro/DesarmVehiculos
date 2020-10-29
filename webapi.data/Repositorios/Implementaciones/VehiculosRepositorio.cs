@@ -106,6 +106,38 @@ namespace webapi.data.Repositorios.Implementaciones
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Vehiculos>> BuscarPorLegajo(int pLegajo)
+        {
+            var Formulario04D = await context.Formulario04D
+                .Where(f => f.NROLEGAJO == pLegajo)
+                .Select(f => f.VEHICULOSID)
+                .ToArrayAsync();
+
+            if (Formulario04D != null)
+            {
+                return await context.Vehiculos
+                .Include(v => v.Marcas)
+                .Include(v => v.Modelos)
+                .Include(v => v.TiposCombustible)
+                .Include(v => v.Companias)
+                .Include(v => v.Colores)
+                .Include(v => v.Categorias)
+                .Include(v => v.Depositos)
+                .Include(v => v.Empleados)
+                .Include(v => v.MarcasChasis)
+                .Include(v => v.MarcasMotor)
+                .Include(v => v.VehiculosTipo)
+                .Include(v => v.DepositosIslasUbicaciones)
+                .Where(v => Formulario04D.Contains(v.Id))
+                .ToListAsync();
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+
         public async Task<Vehiculos> AgregarAsync(Vehiculos pVehiculo)
         {
             await context.Set<Vehiculos>().AddAsync(pVehiculo);

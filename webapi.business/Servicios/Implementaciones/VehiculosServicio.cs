@@ -121,7 +121,7 @@ namespace webapi.business.Servicios.Implementaciones
             
         }
 
-        public async Task<IEnumerable<Vehiculos>> BuscarVehiculo(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis)
+        public async Task<IEnumerable<Vehiculos>> BuscarVehiculo(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis, int pLegajo)
         {
             if (pPatente != null)
                 return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorPatente(pPatente, pMostrarCompactados));
@@ -129,8 +129,11 @@ namespace webapi.business.Servicios.Implementaciones
             if (pMarcasId != 0)
                 return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorMarcaModelo(pMarcasId, pModelosId, pMostrarCompactados));
 
-            if (pNroChasis != "")
+            if (pNroChasis != "" && pNroChasis != null)
                 return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorChasis(pNroChasis, pMostrarCompactados));
+
+            if (pLegajo != 0)
+                return await _unitOfWork.VehiculosRepositorio.BuscarPorLegajo(pLegajo);
 
             else
                 return null;

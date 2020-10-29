@@ -121,5 +121,10 @@ namespace webapi.data.Mocks
         {
             throw new NotImplementedException();
         }
+
+        Task<IEnumerable<Vehiculos>> IVehiculosRepositorio.BuscarPorLegajo(int pLegajo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

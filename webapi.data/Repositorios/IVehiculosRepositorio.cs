@@ -16,5 +16,6 @@ namespace webapi.data.Repositorios
         Task<IEnumerable<Vehiculos>> ObtenerPorMarcaModelo(int pMarcasId, int pModelosId);
         Task<Vehiculos> AgregarAsync(Vehiculos pVehiculo);
         Task<IEnumerable<Vehiculos>> BuscarVehiculos(Expression<Func<Vehiculos, bool>> predicate);
+        Task<IEnumerable<Vehiculos>> BuscarPorLegajo(int pLegajo);
     }
 }
