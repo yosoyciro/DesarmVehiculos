@@ -63,6 +63,7 @@ namespace webapi.core.Modelos
         public DateTime FechaActualizacion { get; set; }
         public int? DepositosIslasUbicacionesId { get; set; }
         public DepositosIslasUbicaciones DepositosIslasUbicaciones { get; set; }
+        public Formulario04D Formulario04D { get; set; }
         public ICollection<ArticulosStock> ArticulosStock { get; set; }
     }
 }

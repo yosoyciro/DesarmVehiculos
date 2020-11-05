@@ -26,5 +26,10 @@ namespace webapi.business.Servicios.Implementaciones
         {
             return await _unitOfWork.ArticulosStockRepositorio.ObtenerPorVehiculo(pVehiculosId);
         }
+
+        public async Task<IEnumerable<ArticulosStock>> ObtenerPorFormulario04D(int pFormularios04DId)
+        {
+            return await _unitOfWork.ArticulosStockRepositorio.ObtenerPorVehiculo(pFormularios04DId);
+        }
     }
 }

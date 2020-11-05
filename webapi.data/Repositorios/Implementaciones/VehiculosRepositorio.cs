@@ -89,7 +89,7 @@ namespace webapi.data.Repositorios.Implementaciones
 
         public async Task<IEnumerable<Vehiculos>> BuscarVehiculos(Expression<Func<Vehiculos, bool>> predicate)
         {
-            return await context.Vehiculos
+             var vehiculos = await context.Vehiculos
                 .Include(v => v.Marcas)
                 .Include(v => v.Modelos)
                 .Include(v => v.TiposCombustible)
@@ -102,20 +102,30 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Include(v => v.MarcasMotor)
                 .Include(v => v.VehiculosTipo)
                 .Include(v => v.DepositosIslasUbicaciones)
+                .Include(v => v.Formulario04D)
                 .Where(predicate)
                 .ToListAsync();
+
+            /*foreach (var item in vehiculos)
+            {
+                var Formulario04D = await context.Formulario04D
+                .SingleOrDefaultAsync(f => f.VEHICULOSID == item.Id);
+
+                item.NroLegajo = Formulario04D.NROLEGAJO;
+                item.NumeroFormulario04D = Formulario04D.NUMERO04D;
+            }*/
+
+            return vehiculos;
         }
 
         public async Task<IEnumerable<Vehiculos>> BuscarPorLegajo(int pLegajo)
         {
-            var Formulario04D = await context.Formulario04D
+            var Formularios04D = await context.Formulario04D
                 .Where(f => f.NROLEGAJO == pLegajo)
                 .Select(f => f.VEHICULOSID)
                 .ToArrayAsync();
 
-            if (Formulario04D != null)
-            {
-                return await context.Vehiculos
+            var vehiculos = await context.Vehiculos
                 .Include(v => v.Marcas)
                 .Include(v => v.Modelos)
                 .Include(v => v.TiposCombustible)
@@ -128,13 +138,19 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Include(v => v.MarcasMotor)
                 .Include(v => v.VehiculosTipo)
                 .Include(v => v.DepositosIslasUbicaciones)
-                .Where(v => Formulario04D.Contains(v.Id))
+                .Include(v => v.Formulario04D)
+                .Where(v => Formularios04D.Contains(v.Id))
                 .ToListAsync();
-            }
-            else
-            {
-                return null;
-            }
+
+            //foreach (var item in vehiculos)
+            //{
+            //    var formulario04D = await context.Formulario04D
+            //        .SingleOrDefaultAsync(f => f.VEHICULOSID == item.Id);
+
+            //    item.NroLegajo = formulario04D.NROLEGAJO;
+            //    item.NumeroFormulario04D = formulario04D.NUMERO04D;
+            //}
+            return vehiculos;
             
         }
 

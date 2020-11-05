@@ -38,5 +38,14 @@ namespace webapi.api.Controllers
 
             return Ok(articulosStockRecurso);
         }
+
+        [HttpGet("ObtenerPorFormulario04D")]
+        public async Task<ActionResult<IEnumerable<ArticulosStockRecurso>>> ObtenerPorFormulario04D(int pFormularios04DId   )
+        {
+            var articulosStock = await _articulosStockServicio.ObtenerPorFormulario04D(pFormularios04DId);
+            var articulosStockRecurso = _mapper.Map<IEnumerable<ArticulosStock>, IEnumerable<ArticulosStockRecurso>>(articulosStock);
+
+            return Ok(articulosStockRecurso);
+        }
     }
 }

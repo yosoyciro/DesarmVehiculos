@@ -83,6 +83,11 @@ namespace webapi.data.Configuraciones
                 .WithMany(d => d.Vehiculos)
                 .HasForeignKey(v => v.DepositosIslasUbicacionesId);
 
+            /*builder
+                .HasOne(v => v.Formulario04D)
+                .WithOne(f => f.Vehiculos)
+                .HasForeignKey(f => f.VEHICULOSID);*/
+
             builder
                 .HasMany(v => v.ArticulosStock)
                 .WithOne(a => a.Vehiculos)

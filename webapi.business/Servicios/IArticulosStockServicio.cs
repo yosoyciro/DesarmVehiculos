@@ -10,5 +10,6 @@ namespace webapi.business.Servicios
     {
         Task<IEnumerable<ArticulosStock>> ListarTodos();
         Task<IEnumerable<ArticulosStock>> ObtenerPorVehiculo(int pVehiculosId);
+        Task<IEnumerable<ArticulosStock>> ObtenerPorFormulario04D(int pFormularios04DId);
     }
 }

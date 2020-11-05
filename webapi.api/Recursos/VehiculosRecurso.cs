@@ -45,8 +45,9 @@ namespace webapi.api.Recursos
         public MarcasRecurso Marcas { get; set; }
         public ModelosRecurso Modelos { get; set; }
         public string Usuario { get; set; }
-        public DateTime FechaActualizacion { get; set; }
+        public DateTime FechaActualizacion { get; set; }        
         public DepositosIslasUbicacionesRecurso DepositosIslasUbicaciones { get; set; }
+        public Formulario04DRecurso Formulario04D { get; set; }
         //public ICollection<ArticulosStockRecurso> ArticulosStock { get; set; }
     }
 }

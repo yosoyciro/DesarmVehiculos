@@ -23,5 +23,12 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Where(a => a.VEHICULOSID == pVehiculosId)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<ArticulosStock>> ObtenerPorFormulario04D(int pFormularios04DId)
+        {
+            return await context.ArticulosStock
+                .Where(a => a.FORMULARIO04DID == pFormularios04DId)
+                .ToListAsync();
+        }
+
     }
 }

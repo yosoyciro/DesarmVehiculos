@@ -12,6 +12,7 @@ namespace webapi.core.Modelos
         }
 
         public int ARTICULOSID { get; set; }
+        public int FORMULARIO04DID { get; set; }
         public int VEHICULOSID { get; set; }
         public string CODIGOBARRA { get; set; }
         public byte ESCOMUN { get; set; }

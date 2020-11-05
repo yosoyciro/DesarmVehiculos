@@ -20,6 +20,11 @@ namespace webapi.data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Vehiculos>()
+                .HasOne(a => a.Formulario04D)
+                .WithOne(a => a.Vehiculos)
+                .HasForeignKey<Formulario04D>(c => c.VEHICULOSID);
+
             builder
                 .ApplyConfiguration(new CompaniasConfiguracion())
                 .ApplyConfiguration(new MarcasConfiguracion())

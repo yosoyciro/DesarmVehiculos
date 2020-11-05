@@ -9,5 +9,6 @@ namespace webapi.data.Repositorios
     public interface IArticulosStockRepositorio : IRepositorio<ArticulosStock>
     {
         Task<IEnumerable<ArticulosStock>> ObtenerPorVehiculo(int pVehiculosId);
+        Task<IEnumerable<ArticulosStock>> ObtenerPorFormulario04D(int pFormularios04DId);
     }
 }
