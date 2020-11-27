@@ -27,6 +27,7 @@ namespace webapi.data.Repositorios.Implementaciones
         private ArticulosDescarteRepositorio _articulosDescarteRepositorio;
         private DesarmeArtDesRepositorio _desarmeArtDesRepositorio;
         private DesarmeArtDesDetalleRepositorio _desarmeArtDesDetalleRepositorio;
+        private RemitosRepositorio _remitosRepositorio;
 
         public UnitOfWork(DesarmDatacenterContext databaseContext)
         { _databaseContext = databaseContext; }
@@ -61,6 +62,7 @@ namespace webapi.data.Repositorios.Implementaciones
         public IArticulosDescarteRepositorio ArticulosDescarteRepositorio => _articulosDescarteRepositorio ?? new ArticulosDescarteRepositorio(_databaseContext);
         public IDesarmeArtDesRepositorio DesarmeArtDesRepositorio => _desarmeArtDesRepositorio ?? new DesarmeArtDesRepositorio(_databaseContext);
         public IDesarmeArtDesDetalleRepositorio DesarmeArtDesDetalleRepositorio => _desarmeArtDesDetalleRepositorio ?? new DesarmeArtDesDetalleRepositorio(_databaseContext);
+        public IRemitosRepositorio RemitosRepositorio => _remitosRepositorio ?? new RemitosRepositorio(_databaseContext);
 
         public async Task<int> CommitAsync()
         {

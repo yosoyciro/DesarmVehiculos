@@ -106,15 +106,6 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Where(predicate)
                 .ToListAsync();
 
-            /*foreach (var item in vehiculos)
-            {
-                var Formulario04D = await context.Formulario04D
-                .SingleOrDefaultAsync(f => f.VEHICULOSID == item.Id);
-
-                item.NroLegajo = Formulario04D.NROLEGAJO;
-                item.NumeroFormulario04D = Formulario04D.NUMERO04D;
-            }*/
-
             return vehiculos;
         }
 
@@ -142,14 +133,6 @@ namespace webapi.data.Repositorios.Implementaciones
                 .Where(v => Formularios04D.Contains(v.Id))
                 .ToListAsync();
 
-            //foreach (var item in vehiculos)
-            //{
-            //    var formulario04D = await context.Formulario04D
-            //        .SingleOrDefaultAsync(f => f.VEHICULOSID == item.Id);
-
-            //    item.NroLegajo = formulario04D.NROLEGAJO;
-            //    item.NumeroFormulario04D = formulario04D.NUMERO04D;
-            //}
             return vehiculos;
             
         }

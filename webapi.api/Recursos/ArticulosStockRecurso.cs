@@ -9,6 +9,7 @@ namespace webapi.api.Recursos
     {
         public int ID { get; set; }
         public int ARTICULOSID { get; set; }
+        public ArticulosRecurso Articulos { get; set; }
         public string CODIGOBARRA { get; set; }
         public byte ESCOMUN { get; set; }
         //public VehiculosRecurso Vehiculos { get; set; }

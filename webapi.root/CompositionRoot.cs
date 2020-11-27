@@ -39,7 +39,8 @@ namespace webapi.root
                 .AddScoped<IArticulosStockServicio, ArticulosStockServicio>()
                 .AddScoped<IArticulosDescarteServicio, ArticulosDescarteServicio>()
                 .AddScoped<IDesarmeArtDesServicio, DesarmeArtDesServicio>()
-                .AddScoped<IDesarmeArtDesDetalleServicio, DesarmeArtDesDetalleServicio>();
+                .AddScoped<IDesarmeArtDesDetalleServicio, DesarmeArtDesDetalleServicio>()
+                .AddScoped<IRemitosServicio, RemitosServicio>();
 
             //Repositorios            
             services
@@ -61,7 +62,8 @@ namespace webapi.root
                 .AddScoped<IArticulosStockRepositorio, ArticulosStockRepositorio>()
                 .AddScoped<IArticulosDescarteRepositorio, ArticulosDescarteRepositorio>()
                 .AddScoped<IDesarmeArtDesRepositorio, DesarmeArtDesRepositorio>()
-                .AddScoped<IDesarmeArtDesDetalleRepositorio, DesarmeArtDesDetalleRepositorio>();
+                .AddScoped<IDesarmeArtDesDetalleRepositorio, DesarmeArtDesDetalleRepositorio>()
+                .AddScoped<IRemitosRepositorio, RemitosRepositorio>();
 
             //Unit of work
             services.AddScoped<IUnitOfWork, UnitOfWork>();

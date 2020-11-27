@@ -44,7 +44,11 @@ namespace webapi.data
                 .ApplyConfiguration(new ArticulosStockConfiguracion())
                 .ApplyConfiguration(new ArticulosDescarteConfiguracion())
                 .ApplyConfiguration(new DesarmeArtDesConfiguracion())
-                .ApplyConfiguration(new DesarmeArtDesDetalleConfiguracion());
+                .ApplyConfiguration(new DesarmeArtDesDetalleConfiguracion())
+                .ApplyConfiguration(new RemitosConfiguracion())
+                .ApplyConfiguration(new RemitosAuditoriaConfiguracion())
+                .ApplyConfiguration(new RemitosDetalleConfiguracion())
+                .ApplyConfiguration(new ArticulosConfiguracion());
         }
 
         public virtual DbSet<Categorias> Categorias { get; set; }
@@ -66,5 +70,9 @@ namespace webapi.data
         public virtual DbSet<ArticulosDescarte> ArticulosDescarte { get; set; }
         public virtual DbSet<DesarmeArtDes> DesarmeArtDes { get; set; }
         public virtual DbSet<DesarmeArtDesDetalle> DesarmeArtDesDetalle { get; set; }
+        public virtual DbSet<Remitos> Remitos { get; set; }
+        public virtual DbSet<RemitosDetalle> RemitosDetalle { get; set; }
+        public virtual DbSet<RemitosAuditoria> RemitosAuditoria { get; set; }
+        public virtual DbSet<Articulos> Articulos { get; set; }
     }
 }

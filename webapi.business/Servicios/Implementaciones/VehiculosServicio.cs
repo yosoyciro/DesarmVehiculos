@@ -141,7 +141,7 @@ namespace webapi.business.Servicios.Implementaciones
 
         #region expresiones
         Expression<Func<Vehiculos, bool>> BuscarPorPatente(string pPatente, bool pMostrarCompactados)
-        {
+        {            
             switch (pMostrarCompactados)
             {
                 case true:

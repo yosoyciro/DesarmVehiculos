@@ -25,6 +25,11 @@ namespace webapi.data.Configuraciones
                 .HasForeignKey(v => v.VEHICULOSID);
 
             builder
+                .HasOne(ars => ars.Articulos)
+                .WithMany(a => a.ArticulosStock)
+                .HasForeignKey(ars => ars.ARTICULOSID);
+
+            builder
                 .ToTable("ArticulosStock");
         }
     }

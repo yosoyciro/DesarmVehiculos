@@ -26,6 +26,7 @@ namespace webapi.data.Repositorios
         IArticulosDescarteRepositorio ArticulosDescarteRepositorio { get; }
         IDesarmeArtDesRepositorio DesarmeArtDesRepositorio { get; }
         IDesarmeArtDesDetalleRepositorio DesarmeArtDesDetalleRepositorio { get; }
+        IRemitosRepositorio RemitosRepositorio { get; }
         Task<int> CommitAsync();
     }
 }

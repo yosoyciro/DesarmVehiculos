@@ -32,6 +32,10 @@ namespace webapi.api.Mapeos
             CreateMap<ArticulosDescarte, ArticulosDescarteRecurso>();
             CreateMap<DesarmeArtDes, DesarmeArtDesRecurso>();
             CreateMap<DesarmeArtDesDetalle, DesarmeArtDesDetalleRecurso>();
+            CreateMap<Remitos, RemitosRecurso>();
+            CreateMap<RemitosDetalle, RemitosDetalleRecurso>();
+            CreateMap<RemitosAuditoria, RemitosAuditoriaRecurso>();
+            CreateMap<Articulos, ArticulosRecurso>();
             
             // Resource to Domain
             CreateMap<VehiculosRecurso, Vehiculos>();
@@ -53,9 +57,16 @@ namespace webapi.api.Mapeos
             CreateMap<ArticulosDescarteRecurso, ArticulosDescarte>();
             CreateMap<DesarmeArtDesRecurso, DesarmeArtDes>();
             CreateMap<DesarmeArtDesDetalleRecurso, DesarmeArtDesDetalle>();
+            CreateMap<RemitosRecurso, Remitos>();
+            CreateMap<RemitosAuditoriaRecurso, RemitosAuditoria>();
+            CreateMap<RemitosDetalleRecurso, RemitosDetalle>();
+            CreateMap<ArticulosRecurso, Articulos>();
 
             //Save resources
             CreateMap<VehiculoGuardarRecurso, Vehiculos>();
+            CreateMap<RemitoGuardarRecurso, Remitos>();
+            CreateMap<RemitosDetalleGuardarRecurso, RemitosDetalle>();
+            CreateMap<RemitosAuditoriaRecurso, RemitosAuditoria>();
         }
     }
 }
