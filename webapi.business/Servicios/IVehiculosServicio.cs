@@ -16,9 +16,10 @@ namespace webapi.business.Servicios
         Task Actualizar(Vehiculos pVehiculoActualizar, Vehiculos pVehiculo);
         Task<IEnumerable<Vehiculos>> ObtenerPorMarca(int pMarcasId);
         Task<IEnumerable<Vehiculos>> ObtenerPorMarcaModelo(int pMarcasId, int pModelosId);
-        Task<IEnumerable<Vehiculos>> BuscarVehiculo(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis, int pLegajo);
+        //Task<IEnumerable<Vehiculos>> BuscarVehiculo(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis, int pLegajo);
         //Task<IEnumerable<Vehiculos>> ListarTodos();
         Task<Vehiculos> AgregarAsync(Vehiculos pVehiculo);
         Task ActualizarDepositosIslasUbicaciones(Vehiculos pVehiculoActualizar, int pDepositosIslasUbicacionesId);
+        Task<IEnumerable<Vehiculos>> BuscarVehiculosMultiple(int pDepositosIslasUbicacionesId, string pPatente, int pMarcasId, int pModelosId, int pMostrarCompactados, string pNroChasis, int pLegajo, int pDepositosId);
     }
 }

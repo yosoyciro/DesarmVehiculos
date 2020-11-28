@@ -122,7 +122,18 @@ namespace webapi.data.Mocks
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<Vehiculos>> IVehiculosRepositorio.BuscarPorLegajo(int pLegajo)
+
+        public Task<IEnumerable<Vehiculos>> BuscarVehiculosMultiple(int pDepositosIslasUbicacionesId, string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis, int pLegajo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Vehiculos>> BuscarVehiculosMultiple(int pDepositosIslasUbicacionesId, string pPatente, int pMarcasId, int pModelosId, int pMostrarCompactados, string pNroChasis, int pLegajo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Vehiculos>> BuscarVehiculosMultiple(int pDepositosIslasUbicacionesId, string pPatente, int pMarcasId, int pModelosId, int pMostrarCompactados, string pNroChasis, int pLegajo, int pDepositosId)
         {
             throw new NotImplementedException();
         }

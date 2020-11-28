@@ -141,9 +141,10 @@ namespace webapi.api.Controllers
         }
 
         [HttpGet("BuscarVehiculos")]
-        public async Task<ActionResult<IEnumerable<VehiculosRecurso>>> Buscar(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis, int pLegajo)
+        public async Task<ActionResult<IEnumerable<VehiculosRecurso>>> Buscar(int pDepositosIslasUbicacionesId, string pPatente, int pMarcasId, int pModelosId, int pMostrarCompactados, string pNroChasis, int pLegajo, int pDepositosId)
         {
-            var vehiculo = await _vehiculosServicios.BuscarVehiculo(pPatente, pMarcasId, pModelosId, pMostrarCompactados, pNroChasis, pLegajo);
+            //var vehiculo = await _vehiculosServicios.BuscarVehiculo(pPatente, pMarcasId, pModelosId, pMostrarCompactados, pNroChasis, pLegajo);
+            var vehiculo = await _vehiculosServicios.BuscarVehiculosMultiple(pDepositosIslasUbicacionesId, pPatente, pMarcasId, pModelosId, pMostrarCompactados, pNroChasis, pLegajo, pDepositosId);
             var vehiculoRecurso = _mapper.Map<IEnumerable<Vehiculos>, IEnumerable<VehiculosRecurso>>(vehiculo);
 
             return Ok(vehiculoRecurso);

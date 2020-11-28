@@ -121,25 +121,30 @@ namespace webapi.business.Servicios.Implementaciones
             
         }
 
-        public async Task<IEnumerable<Vehiculos>> BuscarVehiculo(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis, int pLegajo)
+        //public async Task<IEnumerable<Vehiculos>> BuscarVehiculo(string pPatente, int pMarcasId, int pModelosId, bool pMostrarCompactados, string pNroChasis, int pLegajo)
+        //{
+        //    if (pPatente != null)
+        //        return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorPatente(pPatente, pMostrarCompactados));
+
+        //    if (pMarcasId != 0)
+        //        return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorMarcaModelo(pMarcasId, pModelosId, pMostrarCompactados));
+
+        //    if (pNroChasis != "" && pNroChasis != null)
+        //        return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorChasis(pNroChasis, pMostrarCompactados));
+
+        //    if (pLegajo != 0)
+        //        return await _unitOfWork.VehiculosRepositorio.BuscarPorLegajo(pLegajo);
+
+        //    else
+        //        return null;
+        //}
+
+        public async Task<IEnumerable<Vehiculos>> BuscarVehiculosMultiple(int pDepositosIslasUbicacionesId, string pPatente, int pMarcasId, int pModelosId, int pMostrarCompactados, string pNroChasis, int pLegajo, int pDepositosId)
         {
-            if (pPatente != null)
-                return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorPatente(pPatente, pMostrarCompactados));
-
-            if (pMarcasId != 0)
-                return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorMarcaModelo(pMarcasId, pModelosId, pMostrarCompactados));
-
-            if (pNroChasis != "" && pNroChasis != null)
-                return await _unitOfWork.VehiculosRepositorio.BuscarVehiculos(BuscarPorChasis(pNroChasis, pMostrarCompactados));
-
-            if (pLegajo != 0)
-                return await _unitOfWork.VehiculosRepositorio.BuscarPorLegajo(pLegajo);
-
-            else
-                return null;
+            return await _unitOfWork.VehiculosRepositorio.BuscarVehiculosMultiple(pDepositosIslasUbicacionesId, pPatente, pMarcasId, pModelosId, pMostrarCompactados, pNroChasis, pLegajo, pDepositosId);
         }
 
-        #region expresiones
+        /*#region expresiones
         Expression<Func<Vehiculos, bool>> BuscarPorPatente(string pPatente, bool pMostrarCompactados)
         {            
             switch (pMostrarCompactados)
@@ -185,7 +190,7 @@ namespace webapi.business.Servicios.Implementaciones
             }
 
         }
-        #endregion
+        #endregion*/
 
         public async Task ActualizarDepositosIslasUbicaciones(Vehiculos pVehiculoActualizar, int pDepositosIslasUbicacionesId)
         {
@@ -200,43 +205,6 @@ namespace webapi.business.Servicios.Implementaciones
                 throw ex;
             }
         }
-
-        //Expression<Func<Vehiculos, bool>> BuscarPorMarcaModelo(int pMarcasId, int pModelosId, bool pMostrarCompactados)
-        //{
-        //    switch (pMostrarCompactados)
-        //    {
-        //        case true:
-        //            return x => (x.Marcasid == pMarcasId && x.Modelosid == pModelosId);
-
-        //        case false:
-        //            return x => (x.Marcasid == pMarcasId && x.Modelosid == pModelosId) && x.Vehiculoscompactadosid == 0;
-        //    }
-
-        //}
-
-        //public static Expression<Func<IQueryable<T>, object>> Chain<T>(params Expression<Func<IQueryable<T>, object>>[] expressions)
-        //{
-        //    if (expressions.Length == 0)
-        //        throw new ArgumentException("Nothing to chain");
-
-        //    if (expressions.Length == 1)
-        //        return expressions[0];
-
-        //    Expression body = expressions[0].Body;
-        //    var parameter = expressions[0].Parameters[0];
-        //    foreach (var expression in expressions.Skip(1))
-        //    {
-        //        var methodCall = (MethodCallExpression)expression.Body;
-        //        var lambda = (UnaryExpression)methodCall.Arguments[1];
-
-        //        body = Expression.Call(typeof(QueryableExtensions),
-        //            "Include",
-        //            new[] { typeof(T), ((LambdaExpression)lambda.Operand).Body.Type },
-        //            body, lambda
-        //            );
-        //    }
-
-        //    return Expression.Lambda<Func<IQueryable<T>, object>>(body, parameter);
 
     }
 }

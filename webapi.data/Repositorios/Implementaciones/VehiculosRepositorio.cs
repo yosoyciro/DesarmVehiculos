@@ -87,7 +87,7 @@ namespace webapi.data.Repositorios.Implementaciones
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Vehiculos>> BuscarVehiculos(Expression<Func<Vehiculos, bool>> predicate)
+        /*public async Task<IEnumerable<Vehiculos>> BuscarVehiculos(Expression<Func<Vehiculos, bool>> predicate)
         {
              var vehiculos = await context.Vehiculos
                 .Include(v => v.Marcas)
@@ -107,9 +107,38 @@ namespace webapi.data.Repositorios.Implementaciones
                 .ToListAsync();
 
             return vehiculos;
+        }*/
+
+        public async Task<IEnumerable<Vehiculos>> BuscarVehiculosMultiple(int pDepositosIslasUbicacionesId, string pPatente, int pMarcasId, int pModelosId, int pMostrarCompactados, string pNroChasis, int pLegajo, int pDepositosId)
+        {
+            var vehiculos = await context.Vehiculos
+               .Include(v => v.Marcas)
+               .Include(v => v.Modelos)
+               .Include(v => v.TiposCombustible)
+               .Include(v => v.Companias)
+               .Include(v => v.Colores)
+               .Include(v => v.Categorias)
+               .Include(v => v.Depositos)
+               .Include(v => v.Empleados)
+               .Include(v => v.MarcasChasis)
+               .Include(v => v.MarcasMotor)
+               .Include(v => v.VehiculosTipo)
+               .Include(v => v.DepositosIslasUbicaciones)
+               .Include(v => v.Formulario04D)
+               .Where(v => (0 == pDepositosIslasUbicacionesId || v.DepositosIslasUbicacionesId == pDepositosIslasUbicacionesId)
+                    && (0 == pMarcasId || v.Marcasid == pMarcasId) 
+                    && (0 == pModelosId || v.Modelosid == pModelosId)
+                    && (0 == pLegajo || v.Formulario04D.NROLEGAJO == pLegajo)
+                    && (null == pPatente || v.Patente.Contains(pPatente))
+                    && (null == pNroChasis || v.Chasis.Contains(pNroChasis))
+                    && (1 == pMostrarCompactados || v.Vehiculoscompactadosid == 0)
+                    && (0 == pDepositosId || v.Depositosid == pDepositosId))
+               .ToListAsync();
+
+            return vehiculos;
         }
 
-        public async Task<IEnumerable<Vehiculos>> BuscarPorLegajo(int pLegajo)
+        /*public async Task<IEnumerable<Vehiculos>> BuscarPorLegajo(int pLegajo)
         {
             var Formularios04D = await context.Formulario04D
                 .Where(f => f.NROLEGAJO == pLegajo)
@@ -135,7 +164,7 @@ namespace webapi.data.Repositorios.Implementaciones
 
             return vehiculos;
             
-        }
+        }*/
 
         public async Task<Vehiculos> AgregarAsync(Vehiculos pVehiculo)
         {
