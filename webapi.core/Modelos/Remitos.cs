@@ -19,6 +19,7 @@ namespace webapi.core.Modelos
         public int DEPOSITOSIDORIGEN { get; set; }
         public int DEPOSITOSIDDESTINO { get; set; }
         public string ESTADO { get; set; }
+        public int HORA { get; set; }
         public ICollection<RemitosDetalle> RemitosDetalles { get; set; }
         public ICollection<RemitosAuditoria> RemitosAuditorias { get; set; }
     }
