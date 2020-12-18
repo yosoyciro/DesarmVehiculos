@@ -54,7 +54,7 @@ namespace webapi.api.Controllers
             }
             catch (Exception ex)
             {
-                return Content(ex.InnerException.Message);
+                return StatusCode(500, ex.InnerException.Message);  //Content( ex.InnerException.Message);
             }
 
         }
