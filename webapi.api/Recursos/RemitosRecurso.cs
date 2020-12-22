@@ -12,7 +12,7 @@ namespace webapi.api.Recursos
         public int DEPOSITOSIDORIGEN { get; set; }
         public int DEPOSITOSIDDESTINO { get; set; }
         public string ESTADO { get; set; }
-        public Int64 HORA { get; set; }
+        public int HORA { get; set; }
         public ICollection<RemitosDetalleRecurso> RemitosDetalles { get; set; }
         public ICollection<RemitosAuditoriaRecurso> RemitosAuditorias { get; set; }
     }

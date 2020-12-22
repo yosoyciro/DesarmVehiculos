@@ -20,6 +20,21 @@ namespace webapi.business.Servicios.Implementaciones
             _unitOfWork = unitOfWork;
         }
 
+        public async Task Anular(Remitos pRemitoAnular)
+        {
+            try
+            {
+                pRemitoAnular.ESTADO = "A";
+
+                await _unitOfWork.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public async Task<Remitos> AgregarAsync(Remitos pRemito)
         {
             try

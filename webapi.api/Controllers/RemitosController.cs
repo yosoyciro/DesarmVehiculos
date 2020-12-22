@@ -58,5 +58,25 @@ namespace webapi.api.Controllers
             }
 
         }
+
+        [HttpPut("Anular")]
+        public async Task<ActionResult<RemitosRecurso>> AnularRemito(int pId)
+        {
+            //Guardo
+            var remitoAnular = await _remitosServicio.ObtenerPorIdConDetalle(pId);
+
+            if (remitoAnular == null)
+            {
+                return NotFound();
+            }
+            
+            await _remitosServicio.Anular(remitoAnular);
+
+            var remitoActualizado = await _remitosServicio.ObtenerPorIdConDetalle(pId);
+
+            var remitoActualizadoRecurso = _mapper.Map<Remitos, RemitosRecurso>(remitoActualizado);
+
+            return Ok(remitoActualizadoRecurso);
+        }
     }
 }
