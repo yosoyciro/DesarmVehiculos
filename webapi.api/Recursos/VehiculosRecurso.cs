@@ -8,6 +8,10 @@ namespace webapi.api.Recursos
     public class VehiculosRecurso
     {
         public int Id { get; set; }
+        public Formulario04DRecurso Formulario04D { get; set; }
+        public DepositosIslasUbicacionesRecurso DepositosIslasUbicaciones { get; set; }        
+        public int? Fechabajadnrpa { get; set; }
+        public DepositosRecurso Depositos { get; set; }
         public string Descripcion { get; set; }
         public string Patente { get; set; }
         public short Anio { get; set; }
@@ -30,8 +34,7 @@ namespace webapi.api.Recursos
         public string Tipocombustible { get; set; }
         public VehiculosTipoRecurso VehiculosTipo { get; set; }
         public byte? Impreso { get; set; }
-        public int? Librosid { get; set; }
-        public DepositosRecurso Depositos { get; set; }
+        public int? Librosid { get; set; }        
         public string Nrosiniestro { get; set; }
         public EmpleadosRecurso Empleados { get; set; }
         public byte? Paracompactar { get; set; }
@@ -41,13 +44,13 @@ namespace webapi.api.Recursos
         public CategoriasRecurso Categorias { get; set; }
         public string Tipotransmision { get; set; }
         public TiposCombustibleRecurso TiposCombustible { get; set; }
-        public int? Fechabajadnrpa { get; set; }
+        
         public MarcasRecurso Marcas { get; set; }
         public ModelosRecurso Modelos { get; set; }
         public string Usuario { get; set; }
         public DateTime FechaActualizacion { get; set; }        
-        public DepositosIslasUbicacionesRecurso DepositosIslasUbicaciones { get; set; }
-        public Formulario04DRecurso Formulario04D { get; set; }
+        
+        
         //public ICollection<ArticulosStockRecurso> ArticulosStock { get; set; }
     }
 }
